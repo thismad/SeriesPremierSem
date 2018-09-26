@@ -24,20 +24,60 @@ public class Exercice8 {
 			System.out.println();
 		}
 		
-		public static void fillWithSquare(double[] numbers) {
+		public static double[] fillWithSquare(double[] numbers) {
 			for(int i=0;i<numbers.length;i++) {
-				numbers[i]=(i+1)/100;
+				numbers[i]=Math.pow((i+1.0),2)/100;
+			}
+			return numbers;
+		}
+
+		public static int extractMaxDigit(double nbr) {
+			int decimal;
+			nbr=Math.abs(nbr);
+			if(nbr>10) {
+				do {
+					nbr=nbr/10;
+				}while(nbr>10);
+				decimal=(int)nbr;
+				return decimal;
+			}
+			else if ((nbr<10) && (nbr >=1)){
+				decimal=(int)nbr;
+				return decimal;
+			}	
+			else if(nbr<1 && nbr>0) {
+				do {
+					nbr=nbr*10;
+				}while (nbr<1);
+				decimal=(int) nbr;
+				return decimal;
+			}
+			else return 0;
+		}
+
+		public static void analyze(double[] numbers, int[] occurences) {
+			for (int i =0; i<occurences.length;i++) {
+				for(int j=0;j<numbers.length;j++) {
+					if (i+1==extractMaxDigit(numbers[j])) {
+						occurences[i]+=1;
+					}
+				}
 			}
 		}
-		
-		public static void exctractMaxDigit(double nbr) {
-			nbr=Math.abs(nbr);
-			do {
-				
-				
+
+		public static void testBenford(int occurences[],int b) {
+			int total=0;
+			int benford[]= {1,2,3,4,5,6,7,8,9};
+			
+			for (int i=0; i<occurences.length;i++) {
+				total+=occurences[i];
+			}
+			for (int i=0; i<occurences.length;i++) {
+
+				System.out.println(i+" : "+(double)(occurences[i])/total+", Benford : "+Math.log10(1+(double)1/benford[i]));
+			}
 		}
-			
-			
+
 		public static void main(String[] args) {
 			int[] frequencies = new int[9];
 			double[] numbers = new double[25];
@@ -72,4 +112,3 @@ public class Exercice8 {
 			// FIN TEST 1.4
 		}
 	}
-}
