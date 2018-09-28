@@ -24,12 +24,12 @@ public class Exercice11 {
 		for (int i=0; i<lecture.length();i++) {
 			if (lecture.charAt(i)==' ') {
 				
-				tabChar.add(lecture.substring(n, i-1));
-				n=tabChar.get(i).length()+1;
+				tabChar.add(lecture.substring(n, i));
+				n=i+1;
 						
 			}
 			else if ((i==lecture.length()-1)) {
-				tabChar.add(lecture.substring(n, i));
+				tabChar.add(lecture.substring(n, i+1));
 
 			}
 		}
@@ -60,6 +60,7 @@ public class Exercice11 {
 	
 	public static void cesure(String mot) {
 		String intermediaire="";
+		boolean queVoy=true;
 		boolean voyellePresente=false;
 		System.out.println("Le résultat est : \n");
 		for (int i=0;i<mot.length();i++) {
@@ -67,8 +68,9 @@ public class Exercice11 {
 			if(voyelle(mot.charAt(i))) {
 				voyellePresente=true;
 			}
-			if(intermediaire.length()>=2 && i<intermediaire.length()-1 && voyellePresente 
-					&& !queVoyelles(intermediaire.substring(i,i+1)) && i<mot.length()-1){
+			queVoy=queVoyelles(mot.substring(i,i+1));
+			if(intermediaire.length()>=2 && i<mot.length()-2 && voyellePresente 
+					&& !queVoyelles(mot.substring(i,i+2))){
 				System.out.println("Le résultat est : \n");
 				System.out.println(intermediaire+"-");
 				intermediaire="";
