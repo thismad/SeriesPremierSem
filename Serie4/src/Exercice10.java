@@ -22,6 +22,7 @@ public class Exercice10 {
                 if (etat) tab.add((int) i);
                 etat=true;
                 j=0;
+                
 
             }
         }
